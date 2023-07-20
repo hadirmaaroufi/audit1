@@ -1,5 +1,8 @@
 package tn.talys.spring.audit.Config;
 
+import org.apache.http.HttpHost;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +14,6 @@ import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfig
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 @Configuration
-@EnableElasticsearchRepositories(basePackages = "tn.talys.spring.audit.repository")
-@ComponentScan(basePackages = { "tn.talys.spring.audit.service" })
 public class ElasticConfig extends AbstractElasticsearchConfiguration {
 
     @Value("${elasticsearch.url}")
@@ -24,6 +25,6 @@ public class ElasticConfig extends AbstractElasticsearchConfiguration {
         final ClientConfiguration configuration = ClientConfiguration.builder().connectedTo(elasticsearchUrl).build();
         return RestClients.create(configuration).rest();
     }
-
 }
+
 
