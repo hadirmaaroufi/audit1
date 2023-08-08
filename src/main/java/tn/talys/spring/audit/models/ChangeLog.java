@@ -7,7 +7,9 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import tn.talys.spring.audit.enums.EntityCode;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Document(indexName = "changelogs")
@@ -19,10 +21,10 @@ public class ChangeLog {
     private String fieldName;
 
     @Field(type = FieldType.Text)
-    private String oldValue;
+    private List<String> oldValues = new ArrayList<>();
 
     @Field(type = FieldType.Text)
-    private String newValue;
+    private List<String> newValues = new ArrayList<>();
 
     @Field(type = FieldType.Text)
     private EntityCode entityCode;
@@ -35,4 +37,9 @@ public class ChangeLog {
 
     @Field(type = FieldType.Long)
     private Long userId;
+
+    public void addChange(String oldValue, String newValue) {
+        oldValues.add(oldValue);
+        newValues.add(newValue);
+    }
 }
