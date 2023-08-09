@@ -39,10 +39,8 @@ public class ChangeLogController {
         return changeLogService.getChangeLogByUserId(userId);
 
     }
-    @GetMapping("/getChangeLogByEntityCodeAndInstanceId/{instanceId}")
-    public List<ChangeLog> getChangeLogByEntityCodeAndInstanceId(@RequestBody EntityCode entityCode,@PathVariable Long instanceId) {
-
-        return changeLogService.getChangeLogByEntityCodeAndInstanceId(entityCode,instanceId);
-
+    @GetMapping("/getChangeLogByEntityCodeAndInstanceId/{entityCode}/{instanceId}")
+    public List<ChangeLog> getChangeLogByEntityCodeAndInstanceId(@PathVariable EntityCode entityCode, @PathVariable Long instanceId) {
+        return changeLogService.getChangeLogByEntityCodeAndInstanceId(entityCode, instanceId);
     }
 }

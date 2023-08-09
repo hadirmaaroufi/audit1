@@ -234,11 +234,7 @@ public class IServiceLog implements ChangeLogService {
 
     @Override
     public List<ChangeLog> getChangeLogByEntityCodeAndInstanceId(EntityCode entityCode, Long instanceId) {
-        List<ChangeLog> changeLogs = changeLogRepository.findByEntityCode(entityCode);
-
-        return changeLogs.stream()
-                .filter(log -> log.getInstanceId().equals(instanceId))
-                .collect(Collectors.toList());
+        return changeLogRepository.findByEntityCodeAndInstanceId(entityCode,instanceId);
     }
 
     private List<ChangeLog> createChangeLog(DiffRequest diffRequest) throws JsonProcessingException {
